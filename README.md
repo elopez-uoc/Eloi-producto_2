@@ -1,4 +1,4 @@
-# CODEAProducto1
+# NG-E Producto 2
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
 
@@ -58,23 +58,9 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-# 🏀 CODEA Basket Tech - Producto 1
+# 🏀 NG-E Basket Tech - Producto 1
 
-¡Bienvenidos al proyecto del equipo **CODEA**! Esta es una aplicación de gestión de plantillas de baloncesto desarrollada con **Angular** y **Bootstrap 5**.
+¡Bienvenidos al proyecto de **NG-E**! Esta es una aplicación de gestión de plantillas de baloncesto desarrollada con **Angular**, **Bootstrap 5** y **Firebase**.
 
-## 🎨 Diseño del Proyecto (Mockups)
-
-Para este Producto 1, hemos diseñado la interfaz siguiendo el sistema de rejilla de 12 columnas. Podéis ver los diseños a continuación:
-
-| Vista Principal (Listado y Filtros) | Vista de Detalle (BaskeTube) |
-| :---: | :---: |
-| ![Main Page](./MockUp Producto 1/MainPage.png) | ![Información](./MockUp Producto 1/Información de los jugadores.png) |
-
-> [!TIP]
-> Los archivos originales en alta resolución se encuentran en la carpeta `/MockUp Producto 1`.
-
-## 👥 Equipo: CODEA
-* **Integrantes:** [Alejandro Palomanes Gallego, David Vaz, Eloi Lopez, Oscar Ruiz]
-* **Asignatura:** Desarrollo de Front-End con frameworks avanzados en entornos moviles (UOC)
 
 
