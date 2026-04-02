@@ -1,32 +1,44 @@
 <div class="container-fluid px-5">
-  <div *ngIf="players.length > 0; else noPlayers" 
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Jugadores</h2>
+    <div>
+      <button class="btn btn-success" [routerLink]="['/detail', 'new']">Añadir Nuevo Jugador</button>
+    </div>
+  </div>
+
+  <div *ngIf="(players$ | async) as players; else noPlayers"
        class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
     <div class="col" *ngFor="let jugador of players | playerFilter:searchText:filterField">
       <div
-        [routerLink]="['/detail', jugador.nombre]"
+        [routerLink]="['/detail', jugador.id]"
         class="card h-100 shadow-sm border-2 player-card-hover"
         (click)="$event.stopPropagation()"
-        [class.border-primary]="selectedPlayer?.nombre === jugador.nombre"
-        [class.bg-primary-subtle]="selectedPlayer?.nombre === jugador.nombre"
+        [class.border-primary]="selectedPlayer?.id === jugador.id"
+        [class.bg-primary-subtle]="selectedPlayer?.id === jugador.id"
         style="cursor: pointer; border-radius: 10px; transition: 0.2s;"
       >
         <div style="height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;">
-          <img 
-            [src]="jugador.img" 
-            [alt]="jugador.nombre" 
+          <img
+            [src]="jugador.img"
+            [alt]="jugador.nombre"
             class="img-fluid w-100 h-100 object-fit-cover"
-            style="object-position: top;" 
+            style="object-position: top;"
           />
         </div>
         <div class="card-body d-flex flex-column p-4">
           <h5 class="card-title fw-bold mb-3">{{ jugador.nombre }}</h5>
-          <a
-            [routerLink]="['/detail', jugador.nombre]"
-            class="btn btn-purple mt-auto fw-semibold py-2 w-50 align-self-start"
-            (click)="$event.stopPropagation()"
-          >
-            Ver detalle
-          </a>
+          <div class="d-flex justify-content-between">
+            <a
+              [routerLink]="['/detail', jugador.id]"
+              class="btn btn-purple mt-auto fw-semibold py-2"
+              (click)="$event.stopPropagation()"
+            >
+              Ver detalle
+            </a>
+            <button class="btn btn-danger mt-auto" (click)="deletePlayer(jugador.id); $event.stopPropagation()">
+              <i class="fas fa-trash">Borrar</i>
+            </button>
+          </div>
         </div>
       </div>
 

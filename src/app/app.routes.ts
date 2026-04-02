@@ -4,6 +4,6 @@ import { DetailComponent } from './detailComponent/detailComponent';
 
 export const routes: Routes = [
   { path: '', component: PlayersComponent },
-  // route with a parameter (player nombre) so the detail view can show different content
-  { path: 'detail/:nombre', component: DetailComponent }
+  // route with a parameter (player id) so the detail view can show different content
+  { path: 'detail/:id', component: DetailComponent }
 ];

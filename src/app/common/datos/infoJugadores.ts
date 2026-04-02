@@ -32,6 +32,41 @@ export const infoJugadores = [
         posicion: "Base", altura: "2.06m",
         edad: 62, pPP: 19.5, rPP: 7.2, aPP: 11.2,
         porcentajeTiros: 52.0,
-        img: "/assets/photos/Magic-Johnson.webp" }
+        img: "/assets/photos/Magic-Johnson.webp" },
+
+    { nombre: "Stephen Curry", 
+        equipo: "Golden State Warriors", 
+        posicion: "Base", altura: "1.91m", 
+        edad: 35, pPP: 24.3, rPP: 4.5, aPP: 6.5, 
+        porcentajeTiros: 43.7,
+        img: "/assets/photos/stephen-curry.jpg" },
+    
+    { nombre: "Kevin Durant", 
+        equipo: "Phoenix Suns", 
+        posicion: "Alero", altura: "2.08m", 
+        edad: 34, pPP: 26.0, rPP: 7.1, aPP: 5.0, 
+        porcentajeTiros: 49.2,
+        img: "/assets/photos/kevin-durant.jpg" },
+    
+    { nombre: "Giannis Antetokounmpo", 
+        equipo: "Milwaukee Bucks", 
+        posicion: "Ala-Pívot", altura: "2.11m", 
+        edad: 28, pPP: 29.9, rPP: 11.8, aPP: 5.6, 
+        porcentajeTiros: 55.1,
+        img: "/assets/photos/giannis.jpg" },
+    
+    { nombre: "Nikola Jokic", 
+        equipo: "Denver Nuggets", 
+        posicion: "Pívot", altura: "2.11m", 
+        edad: 28, pPP: 26.4, rPP: 10.8, aPP: 7.2, 
+        porcentajeTiros: 58.3,
+        img: "/assets/photos/nikola-jokic.jpg" },
+    
+    { nombre: "Kawhi Leonard", 
+        equipo: "Los Angeles Clippers", 
+        posicion: "Alero", altura: "2.01m", 
+        edad: 31, pPP: 25.5, rPP: 6.6, aPP: 4.9, 
+        porcentajeTiros: 49.1,
+        img: "/assets/photos/kawhi-leonard.jpg" }
 
 ];

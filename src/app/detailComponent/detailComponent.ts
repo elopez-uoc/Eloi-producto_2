@@ -1,45 +1,80 @@
-import { Component, signal, inject } from "@angular/core";
-import { ActivatedRoute } from '@angular/router';
+import { Component, signal, inject, OnInit, ChangeDetectorRef } from "@angular/core";
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { infoJugadores } from "../common/datos/infoJugadores";
-import { MediaComponent } from '../mediaComponent/mediaComponent';
-
-interface Player {
-  nombre: string;
-  equipo: string;
-  posicion: string;
-  altura: string;
-  edad: number;
-  pPP: number;
-  rPP: number;
-  aPP: number;
-  porcentajeTiros: number;
-  img: string;
-}
+import { FormsModule } from '@angular/forms';
+import { JugadoresService, Jugador } from '../common/datos/jugadores.service';
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [CommonModule, MediaComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './detailComponent.html',
   styleUrl: './detailComponent.css'
 })
-export class DetailComponent {
+export class DetailComponent implements OnInit {
   protected readonly title = signal('CODEA-Producto1');
-  readonly player = signal<Player | undefined>(undefined);
+  player: Jugador | null = null;
+  isEditing = false;
+  isNew = false;
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private jugadoresService = inject(JugadoresService);
+  private cdr = inject(ChangeDetectorRef);
 
-  constructor() {
-    console.log('DetailComponent initialized with title:', this.title());
-
+  ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      const nombre = params.get('nombre');
-      if (nombre) {
-        const found = infoJugadores.find(j => j.nombre === nombre);
-        this.player.set(found as Player | undefined);
-      } else {
-        this.player.set(undefined);
+      const id = params.get('id');
+      console.log('Detail component, id from route:', id);
+      if (id === 'new') {
+        this.isNew = true;
+        this.isEditing = true;
+        this.player = {
+          nombre: '',
+          equipo: '',
+          posicion: '',
+          altura: '',
+          edad: 0,
+          pPP: 0,
+          rPP: 0,
+          aPP: 0,
+          porcentajeTiros: 0,
+          img: ''
+        };
+        this.cdr.detectChanges();
+      } else if (id) {
+        this.isNew = false;
+        this.jugadoresService.getJugador(id).subscribe(player => {
+          console.log('Player received:', player);
+          this.player = player;
+          this.cdr.detectChanges();
+        });
       }
     });
+  }
+
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
+  }
+
+  savePlayer() {
+    if (this.player) {
+      if (this.isNew) {
+        this.jugadoresService.addJugador(this.player).then(docRef => {
+          console.log('Nuevo jugador añadido con ID:', docRef.id);
+          this.isEditing = false;
+          this.isNew = false;
+          this.router.navigate(['/detail', docRef.id]);
+        }).catch(error => {
+          console.error('Error añadiendo jugador:', error);
+        });
+      } else {
+        this.jugadoresService.updateJugador(this.player).then(() => {
+          this.isEditing = false;
+          console.log('Jugador actualizado');
+        }).catch(error => {
+          console.error('Error actualizando:', error);
+        });
+      }
+    }
   }
 }
