@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, doc, docData, addDoc, updateDoc, deleteDoc, query, Query, DocumentData, getFirestore, getDocs, onSnapshot, getDoc } from '@angular/fire/firestore';
 import { Observable, from, of } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
-import { infoJugadores } from './infoJugadores';
 
 export interface Jugador {
   id?: string;
@@ -67,16 +66,5 @@ export class JugadoresService {
   deleteJugador(id: string) {
     const jugadorDocRef = doc(this.firestore, `jugadores/${id}`);
     return deleteDoc(jugadorDocRef);
-  }
-
-  async populateDatabase() {
-    for (const jugador of infoJugadores) {
-      try {
-        await this.addJugador(jugador);
-        console.log(`Añadido: ${jugador.nombre}`);
-      } catch (e) {
-        console.error('Error añadiendo documento: ', e);
-      }
-    }
   }
 }
