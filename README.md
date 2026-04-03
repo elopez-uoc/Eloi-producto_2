@@ -1,66 +1,94 @@
-# NG-E Producto 2
+﻿# 🏀 NG-E Basket Tech - Producto 2
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
+Aplicación Angular de gestión de plantillas de baloncesto.
 
-## Development server
+- Framework: Angular 21
+- Estilo: Bootstrap 5
+- Backend: Firebase (Firestore/Hosting, según configuración del proyecto)
 
-To start a local development server, run:
+## Requisitos previos
+
+1. Node.js 18+ y npm 10+
+2. Angular CLI 21.x (opcional pero recomendado)
+
+Instalar Angular CLI globalmente (si no está instalado):
+
+```bash
+npm install -g @angular/cli
+```
+
+## Instalación
+
+Clonar el repositorio y ejecutar:
+
+```bash
+npm install
+```
+
+## Estructura principal del proyecto
+
+- `src/app/app.ts` y rutas en `src/app/app.routes.ts`
+- Componentes:
+  - `src/app/playersComponent` (lista de jugadores)
+  - `src/app/detailComponent` (detalle de jugador)
+  - `src/app/common/navbar` (barra de navegación)
+- Servicios:
+  - `src/app/common/datos/jugadores.service.ts`
+- Pipes personalizados:
+  - `src/app/common/pipes/player-filter.pipe.ts`, `src/app/common/pipes/label.pipe.ts`
+- Assets en `public/assets/photos`
+- Configuración de entorno en `src/environments`
+
+## Configuración de Firebase (opcional)
+
+1. Crear proyecto en Firebase
+2. Editar `src/environments/environment.ts` y `src/environments/environment.prod.ts` con tus credenciales
+3. Instalar Firebase + AngularFire si no están:
+
+```bash
+npm install firebase @angular/fire
+```
+
+## Desarrollo
+
+Arrancar servidor local:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abrir navegador en:
 
-## Code scaffolding
+`http://localhost:4200/`
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+La app se recarga automáticamente al modificar archivos.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Build de producción
 
 ```bash
-ng generate --help
+ng build --configuration production
 ```
 
-## Building
+Salida en `dist/`.
 
-To build the project run:
+## Tests
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Unitarios
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### E2E
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+> Nota: revisa la configuración de e2e en `angular.json` (puede requerir Cypress u otro runner).
 
-## Additional Resources
+## Recursos
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-# 🏀 NG-E Basket Tech - Producto 1
-
-¡Bienvenidos al proyecto de **NG-E**! Esta es una aplicación de gestión de plantillas de baloncesto desarrollada con **Angular**, **Bootstrap 5** y **Firebase**.
-
-
-
+- Angular CLI: https://angular.dev/tools/cli
+- Angular: https://angular.dev
+- Firebase: https://firebase.google.com

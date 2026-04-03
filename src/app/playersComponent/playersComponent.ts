@@ -1,4 +1,4 @@
-import { Component, signal, OnInit } from "@angular/core";
+﻿import { Component, signal, OnInit } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -14,10 +14,13 @@ import { searchTextSignal, filterFieldSignal, PlayerFilterField } from '../commo
   styleUrl: './playersComponent.css'
 })
 export class PlayersComponent implements OnInit {
+  // Texto de título del componente.
   protected readonly title = signal('NG-E-Producto2');
 
+  // Stream observable que contiene la lista de jugadores.
   players$!: Observable<Jugador[]>;
 
+  // Accesores para señales de filtro global.
   get searchText(): string {
     return searchTextSignal();
   }
@@ -26,6 +29,7 @@ export class PlayersComponent implements OnInit {
     return filterFieldSignal();
   }
 
+  // Jugador seleccionado en la UI (si aplica).
   selectedPlayer: Jugador | null = null;
 
   constructor(private jugadoresService: JugadoresService) {
@@ -33,13 +37,18 @@ export class PlayersComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Leer lista inicial de jugadores al iniciar el componente.
     this.players$ = this.jugadoresService.getJugadores();
   }
 
+  /** Marca un jugador como seleccionado.
+   *  Esto puede usarse para mostrar detalles o estado UI adicional.
+   */
   selectPlayer(player: Jugador): void {
     this.selectedPlayer = player;
   }
 
+  /** Elimina jugador tomando confirmación de usuario y refrescando la lista. */
   deletePlayer(id: string): void {
     if (confirm('¿Estás seguro de que quieres borrar este jugador?')) {
       this.jugadoresService.deleteJugador(id).then(() => {
