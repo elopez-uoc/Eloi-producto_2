@@ -14,7 +14,7 @@ import { searchTextSignal, filterFieldSignal, PlayerFilterField } from '../commo
   styleUrl: './playersComponent.css'
 })
 export class PlayersComponent implements OnInit {
-  protected readonly title = signal('CODEA-Producto1');
+  protected readonly title = signal('NG-E-Producto2');
 
   players$!: Observable<Jugador[]>;
 
