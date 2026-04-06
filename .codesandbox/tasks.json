@@ -2,8 +2,16 @@
   // These tasks will run in order when initializing your CodeSandbox project.
   "setupTasks": [
     {
-      "command": "npm install",
+      "command": "npm install --legacy-peer-deps",
       "name": "Installing Dependencies"
+    },
+    {
+      "command": "nvm install 22",
+      "name": "Version"
+    },
+    {
+      "command": "npm start",
+      "name": "Start the app"
     }
   ],
 
