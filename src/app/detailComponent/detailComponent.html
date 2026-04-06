@@ -26,6 +26,7 @@
                 <input type="text" class="form-control mb-2" [(ngModel)]="p.posicion" placeholder="Posición">
                 <input type="text" class="form-control mb-2" [(ngModel)]="p.altura" placeholder="Altura">
                 <input type="number" class="form-control mb-2" [(ngModel)]="p.edad" placeholder="Edad">
+                <input type="text" class="form-control mb-2" [(ngModel)]="p.videoUrl" placeholder="URL de video o YouTube (opcional)">
               } @else {
                 <h2 class="fw-bold">{{ p.nombre }}</h2>
                 <p><strong>Equipo:</strong> {{ p.equipo }}</p>
@@ -39,14 +40,28 @@
         <div class="row g-3">
           <div class="col-md-6">
             <div class="custom-card p-4 h-100 d-flex flex-column justify-content-center">
-              <h2 class="fw-bold">El Míster</h2>
-              <p><strong>Nombre:</strong> Alex Sabater</p>
-              <p><strong>Edad:</strong> 33</p>
-              <p><strong>Ocupación:</strong> Director técnico deportivo</p>
-              <p><strong>Objetivos:</strong> Acceder a datos de jugadores</p>
-              <button class="btn btn-custom mt-3 align-self-center">
-                Contactar con el agente
-              </button>
+              <h2 class="fw-bold mb-3">Video</h2>
+              <div class="video-container">
+                @if (isYouTubeUrl) {
+                  <iframe 
+                    class="youtube-player"
+                    [src]="youtubeEmbedUrl"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                  </iframe>
+                } @else {
+                  <video 
+                    #videoPlayer
+                    id="mister-video" 
+                    class="video-player"
+                    controls
+                    preload="metadata">
+                    <source [src]="currentVideoSource" type="video/mp4">
+                    Tu navegador no soporta el elemento video.
+                  </video>
+                }
+              </div>
             </div>
           </div>
           <div class="col-md-6">

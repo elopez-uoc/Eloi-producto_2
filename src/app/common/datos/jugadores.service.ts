@@ -17,6 +17,7 @@ export interface Jugador {
   aPP: number;
   porcentajeTiros: number;
   img: string;
+  videoUrl?: string;
 }
 
 @Injectable({
