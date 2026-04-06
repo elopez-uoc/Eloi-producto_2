@@ -31,7 +31,30 @@ export class MediaComponent {
 
   // Computed property for current video source
   get currentVideoSource(): string {
-    return this.videoUrl || this.defaultVideoSource;
+    if (!this.videoUrl) return this.defaultVideoSource;
+    
+    // Si es solo un nombre de archivo (sin protocolo), asumimos que está en assets/videos
+    if (!this.videoUrl.includes('://') && !this.videoUrl.startsWith('/')) {
+      return `/assets/videos/${this.videoUrl}`;
+    }
+    
+    return this.videoUrl;
+  }
+
+  // Obtiene el tipo MIME del video basado en la extensión
+  get videoType(): string {
+    if (!this.videoUrl) return 'video/mp4';
+    
+    const extension = this.videoUrl.split('.').pop()?.toLowerCase();
+    switch (extension) {
+      case 'mp4': return 'video/mp4';
+      case 'webm': return 'video/webm';
+      case 'ogg':
+      case 'ogv': return 'video/ogg';
+      case 'avi': return 'video/avi';
+      case 'mov': return 'video/quicktime';
+      default: return 'video/mp4';
+    }
   }
 
   // Extrae el ID del video de una URL de YouTube

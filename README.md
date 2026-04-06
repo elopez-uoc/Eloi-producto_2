@@ -1,15 +1,43 @@
 ﻿# 🏀 NG-E Basket Tech - Producto 2
 
-Aplicación Angular de gestión de plantillas de baloncesto.
+Aplicación Angular completa para la gestión de plantillas de baloncesto con integración de videos y estadísticas.
 
-- Framework: Angular 21
-- Estilo: Bootstrap 5
-- Backend: Firebase (Firestore/Hosting, según configuración del proyecto)
+- **Framework**: Angular 21
+- **Estilo**: Bootstrap 5
+- **Backend**: Firebase (Firestore/Hosting)
+- **Video Support**: YouTube URLs y archivos de video locales
+- **Base de datos**: Firestore para persistencia de datos
 
-## Requisitos previos
+## ✨ Características principales
 
-1. Node.js 18+ y npm 10+
-2. Angular CLI 21.x (opcional pero recomendado)
+### 👥 Gestión de Jugadores
+- **Lista de jugadores** con filtros y búsqueda
+- **Vista detallada** de cada jugador con estadísticas completas
+- **Edición/creación** de perfiles de jugadores
+- **Persistencia** en Firestore
+
+### 📊 Estadísticas de Temporada
+- Puntos por partido (PPP)
+- Rebotes por partido (RPP)
+- Asistencias por partido (APP)
+- Porcentaje de tiros de campo (%TC)
+
+### 🎥 Sistema de Video
+- **Soporte para YouTube**: URLs completas o acortadas
+- **Archivos de video locales**: MP4, WebM, Ogg
+- **Reproductor responsive** con controles nativos
+- **Componente reutilizable** (`mediaComponent`)
+
+### 🎨 Interfaz de Usuario
+- Diseño moderno con Bootstrap 5
+- Navegación intuitiva
+- Modo edición/creación integrado
+- Responsive design
+
+## 📋 Requisitos previos
+
+1. **Node.js** 18+ y **npm** 10+
+2. **Angular CLI** 21.x (opcional pero recomendado)
 
 Instalar Angular CLI globalmente (si no está instalado):
 
@@ -17,78 +45,168 @@ Instalar Angular CLI globalmente (si no está instalado):
 npm install -g @angular/cli
 ```
 
-## Instalación
+## 🚀 Instalación y configuración
 
-Clonar el repositorio y ejecutar:
+### 1. Clonar e instalar dependencias
 
 ```bash
+git clone <repository-url>
+cd Eloi-producto_2
 npm install
 ```
 
-## Estructura principal del proyecto
+### 2. Configuración de Firebase
 
-- `src/app/app.ts` y rutas en `src/app/app.routes.ts`
-- Componentes:
-  - `src/app/playersComponent` (lista de jugadores)
-  - `src/app/detailComponent` (detalle de jugador)
-  - `src/app/common/navbar` (barra de navegación)
-- Servicios:
-  - `src/app/common/datos/jugadores.service.ts`
-- Pipes personalizados:
-  - `src/app/common/pipes/player-filter.pipe.ts`, `src/app/common/pipes/label.pipe.ts`
-- Assets en `public/assets/photos`
-- Configuración de entorno en `src/environments`
+1. Crear proyecto en [Firebase Console](https://console.firebase.google.com)
+2. Obtener credenciales del proyecto
+3. Editar `src/environments/environment.ts` y `src/environments/environment.prod.ts`:
 
-## Configuración de Firebase (opcional)
+```typescript
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "your-api-key",
+    authDomain: "your-project.firebaseapp.com",
+    projectId: "your-project-id",
+    storageBucket: "your-project.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "your-app-id"
+  }
+};
+```
 
-1. Crear proyecto en Firebase
-2. Editar `src/environments/environment.ts` y `src/environments/environment.prod.ts` con tus credenciales
-3. Instalar Firebase + AngularFire si no están:
+4. Instalar Firebase + AngularFire (si no están incluidos):
 
 ```bash
 npm install firebase @angular/fire
 ```
 
-## Desarrollo
+## 🏗️ Estructura del proyecto
 
-Arrancar servidor local:
+```
+src/
+├── app/
+│   ├── app.routes.ts              # Configuración de rutas
+│   ├── app.ts                     # Componente principal
+│   ├── playersComponent/          # Lista de jugadores
+│   ├── detailComponent/           # Detalle y edición de jugador
+│   ├── mediaComponent/            # Reproductor de video reutilizable
+│   └── common/
+│       ├── datos/
+│       │   └── jugadores.service.ts  # Servicio Firestore
+│       ├── navbar/                # Barra de navegación
+│       └── pipes/                 # Pipes personalizados
+├── environments/                  # Configuración de entorno
+└── assets/                        # Recursos estáticos
+```
+
+## 📊 Modelo de datos
+
+### Jugador
+```typescript
+interface Jugador {
+  id?: string;
+  nombre: string;
+  equipo: string;
+  posicion: string;
+  altura: string;
+  edad: number;
+  pPP: number;           // Puntos por partido
+  rPP: number;           // Rebotes por partido
+  aPP: number;           // Asistencias por partido
+  porcentajeTiros: number; // % Tiros de campo
+  img: string;           // URL de imagen
+  videoUrl?: string;     // URL de video (YouTube o archivo local)
+}
+```
+
+## 🎬 Uso del sistema de video
+
+### URLs soportadas
+
+**YouTube:**
+- `https://www.youtube.com/watch?v=VIDEO_ID`
+- `https://youtu.be/VIDEO_ID`
+- Solo el `VIDEO_ID` (11 caracteres)
+
+**Archivos locales:**
+- `.mp4`, `.webm`, `.ogv`
+- URLs absolutas o relativas
+
+### Ejemplo de uso
+
+```html
+<app-media
+  [videoUrl]="jugador.videoUrl"
+  [defaultVideoSource]="'ruta/a/video/default.mp4'">
+</app-media>
+```
+
+## 🛠️ Desarrollo
+
+### Servidor de desarrollo
 
 ```bash
 ng serve
 ```
 
-Abrir navegador en:
+Acceder en: `http://localhost:4200`
 
-`http://localhost:4200/`
+La aplicación se recarga automáticamente al modificar archivos.
 
-La app se recarga automáticamente al modificar archivos.
-
-## Build de producción
+### Build de producción
 
 ```bash
 ng build --configuration production
 ```
 
-Salida en `dist/`.
+Archivos generados en `dist/`.
 
-## Tests
+## 🧪 Tests
 
-### Unitarios
+### Tests unitarios
 
 ```bash
 ng test
 ```
 
-### E2E
+### Tests E2E
 
 ```bash
 ng e2e
 ```
 
-> Nota: revisa la configuración de e2e en `angular.json` (puede requerir Cypress u otro runner).
+> Nota: Verificar configuración de e2e en `angular.json`
 
-## Recursos
+## 📚 Scripts disponibles
 
-- Angular CLI: https://angular.dev/tools/cli
-- Angular: https://angular.dev
-- Firebase: https://firebase.google.com
+```json
+{
+  "ng": "ng",
+  "start": "ng serve",
+  "build": "ng build",
+  "watch": "ng build --watch --configuration development",
+  "test": "ng test"
+}
+```
+
+## 🔧 Tecnologías utilizadas
+
+- **Angular 21** - Framework principal
+- **Bootstrap 5** - Framework CSS
+- **Firebase/Firestore** - Backend y base de datos
+- **RxJS** - Programación reactiva
+- **TypeScript** - Tipado estático
+
+## 📖 Recursos adicionales
+
+- [Angular Documentation](https://angular.dev)
+- [Angular CLI](https://angular.dev/tools/cli)
+- [Firebase Documentation](https://firebase.google.com/docs)
+- [Bootstrap 5](https://getbootstrap.com/docs/5.0/)
+- [RxJS](https://rxjs.dev/)
+
+
+## 📄 Licencia
+
+Este proyecto es parte del curso de Desarrollo de Aplicaciones Móviles - UOC.
