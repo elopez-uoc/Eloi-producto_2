@@ -1,0 +1,21 @@
+<div class="video-container">
+  @if (isYouTubeUrl) {
+    <iframe
+      class="youtube-player"
+      [src]="youtubeEmbedUrl"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  } @else {
+    <video
+      #videoPlayer
+      id="media-video"
+      class="video-player"
+      controls
+      preload="metadata">
+      <source [src]="currentVideoSource" type="video/mp4">
+      Tu navegador no soporta el elemento video.
+    </video>
+  }
+</div>

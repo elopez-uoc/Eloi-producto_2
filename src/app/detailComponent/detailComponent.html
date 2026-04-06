@@ -41,27 +41,10 @@
           <div class="col-md-6">
             <div class="custom-card p-4 h-100 d-flex flex-column justify-content-center">
               <h2 class="fw-bold mb-3">Video</h2>
-              <div class="video-container">
-                @if (isYouTubeUrl) {
-                  <iframe 
-                    class="youtube-player"
-                    [src]="youtubeEmbedUrl"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                  </iframe>
-                } @else {
-                  <video 
-                    #videoPlayer
-                    id="mister-video" 
-                    class="video-player"
-                    controls
-                    preload="metadata">
-                    <source [src]="currentVideoSource" type="video/mp4">
-                    Tu navegador no soporta el elemento video.
-                  </video>
-                }
-              </div>
+              <app-media
+                [videoUrl]="player?.videoUrl || ''"
+                [defaultVideoSource]="'https://commondatastorage.googleapis.com/gtv-videos-library/sample/BigBuckBunny.mp4'">
+              </app-media>
             </div>
           </div>
           <div class="col-md-6">
