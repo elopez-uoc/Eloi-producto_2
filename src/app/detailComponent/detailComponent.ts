@@ -73,6 +73,9 @@ export class DetailComponent implements OnInit {
   /** Guarda los cambios del jugador (creación o actualización). */
   savePlayer() {
     if (this.player) {
+      if (this.player?.nombre=='' || this.player?.equipo=='' || this.player?.posicion=='' || this.player?.altura=='' || this.player?.edad==0) {
+           alert('Por favor, complete todos los campos.');
+      }
       if (this.isNew) {
         // Crear nuevo documento.
         this.jugadoresService.addJugador(this.player).then(docRef => {

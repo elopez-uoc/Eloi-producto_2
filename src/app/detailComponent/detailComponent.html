@@ -3,7 +3,7 @@
   <div class="row g-4 justify-content-center" style="width: 90%; margin: 0 auto;">
     <div class="col-lg-8">
       <div class="d-flex justify-content-end mb-3">
-        <button class="btn btn-warning" (click)="toggleEdit()">{{ isEditing ? 'Cancelar' : 'Editar' }}</button>
+        <button class="btn btn-warning" (click)="toggleEdit()">{{ isEditing ? 'Cancelar' : 'Editar' }}</button>     
         @if (isEditing) {
           <button class="btn btn-success ms-2" (click)="savePlayer()">Guardar</button>
         }
@@ -12,7 +12,7 @@
         <div class="row g-3">
           <div class="col-md-5">
             @if (isEditing) {
-              <input type="text" class="form-control" [(ngModel)]="p.img" placeholder="URL de imagen">
+              <input type="text" class="form-control" [(ngModel)]="p.img" placeholder="URL de imagen (opcional)">
             } @else {
               <img [src]="p.img" [alt]="p.nombre" class="img-fluid rounded-3 custom-height-img w-100 object-fit-cover"
               style="object-position: top;" >
@@ -26,7 +26,7 @@
                 <input type="text" class="form-control mb-2" [(ngModel)]="p.posicion" placeholder="Posición">
                 <input type="text" class="form-control mb-2" [(ngModel)]="p.altura" placeholder="Altura">
                 <input type="number" class="form-control mb-2" [(ngModel)]="p.edad" placeholder="Edad">
-                <input type="text" class="form-control mb-2" [(ngModel)]="p.videoUrl" placeholder="URL de video o YouTube, o nombre de archivo (ej: Lebron.mp4)">
+                <input type="text" class="form-control mb-2" [(ngModel)]="p.videoUrl" placeholder="URL de video o YouTube, o nombre de archivo (opcional)">
               } @else {
                 <h2 class="fw-bold">{{ p.nombre }}</h2>
                 <p><strong>Equipo:</strong> {{ p.equipo }}</p>
