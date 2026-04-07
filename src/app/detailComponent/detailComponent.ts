@@ -14,7 +14,7 @@ import { MediaComponent } from '../mediaComponent/mediaComponent';
 })
 export class DetailComponent implements OnInit {
   // Título visible en la interfaz
-  protected readonly title = signal('CODEA-Producto1');
+  protected readonly title = signal('NGE-Producto2');
 
   // Objeto jugador actual mostrado/edición.
   player: Jugador | null = null;
@@ -80,6 +80,7 @@ export class DetailComponent implements OnInit {
           this.isEditing = false;
           this.isNew = false;
           this.router.navigate(['/detail', docRef.id]);
+          window.location.reload(); // Recarga la página para actualizar la lista de jugadores
         }).catch(error => {
           console.error('Error añadiendo jugador:', error);
         });
@@ -88,6 +89,7 @@ export class DetailComponent implements OnInit {
         this.jugadoresService.updateJugador(this.player).then(() => {
           this.isEditing = false;
           console.log('Jugador actualizado');
+          window.location.reload(); // Recarga la página para actualizar la lista de jugadores
         }).catch(error => {
           console.error('Error actualizando:', error);
         });

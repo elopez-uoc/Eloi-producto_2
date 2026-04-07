@@ -54,6 +54,7 @@ export class PlayersComponent implements OnInit {
       this.jugadoresService.deleteJugador(id).then(() => {
         console.log('Jugador borrado');
         this.players$ = this.jugadoresService.getJugadores();
+        window.location.reload(); // Recarga la página para actualizar la lista de jugadores
       }).catch(error => {
         console.error('Error borrando jugador:', error);
       });
