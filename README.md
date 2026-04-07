@@ -1,6 +1,6 @@
 ﻿# 🏀 NG-E Basket Tech - Producto 2
 
-Aplicación Angular completa para la gestión de plantillas de baloncesto con integración de videos y estadísticas.
+**NG-E Basket Tech** es una plataforma de gestión deportiva avanzada desarrollada en Angular 21. Permite a cuerpos técnicos y analistas centralizar la información de sus plantillas, realizar un seguimiento estadístico detallado y gestionar contenido multimedia de cada jugador de forma eficiente.
 
 - **Framework**: Angular 21
 - **Estilo**: Bootstrap 5
@@ -14,6 +14,7 @@ Aplicación Angular completa para la gestión de plantillas de baloncesto con in
 - **Lista de jugadores** con filtros y búsqueda
 - **Vista detallada** de cada jugador con estadísticas completas
 - **Edición/creación** de perfiles de jugadores
+- **Validación de datos** mediante formularios reactivos
 - **Persistencia** en Firestore
 
 ### 📊 Estadísticas de Temporada
@@ -33,6 +34,18 @@ Aplicación Angular completa para la gestión de plantillas de baloncesto con in
 - Navegación intuitiva
 - Modo edición/creación integrado
 - Responsive design
+
+## 🏗️ Arquitectura y Flujo de Datos
+
+La aplicación sigue una arquitectura desacoplada basada en componentes y servicios:
+
+1.  **Capa de Persistencia (Firebase)**: Se utiliza Firestore para el almacenamiento de datos en tiempo real.
+2.  **Capa de Servicios**: `jugadores.service.ts` actúa como el único punto de verdad, gestionando los Observables de RxJS para que la interfaz se actualice automáticamente ante cambios en la base de datos.
+3.  **Componentización**:
+    *   `playersComponent`: Dashboard principal con lógica de filtrado.
+    *   `detailComponent`: Componente dual (lectura/escritura) para la gestión individual.
+    *   `mediaComponent`: Módulo independiente para el renderizado inteligente de video.
+4.  **Pipes**: Transformación de datos en tiempo real para búsquedas y formateo de estadísticas.
 
 ## 📋 Requisitos previos
 
@@ -133,6 +146,8 @@ interface Jugador {
 - `.mp4`, `.webm`, `.ogv`
 - URLs absolutas o relativas
 
+El sistema incorpora un motor de detección automática que distingue entre identificadores de YouTube y rutas de archivos locales para instanciar el reproductor adecuado (IFrame API o HTML5 Video Tag).
+
 ### Ejemplo de uso
 
 ```html
@@ -196,6 +211,7 @@ ng e2e
 - **Bootstrap 5** - Framework CSS
 - **Firebase/Firestore** - Backend y base de datos
 - **RxJS** - Programación reactiva
+- **Angular Router** - Estrategia de navegación SPA
 - **TypeScript** - Tipado estático
 
 ## 📖 Recursos adicionales
