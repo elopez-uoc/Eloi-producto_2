@@ -4,6 +4,10 @@
     {
       "command": "npm install --legacy-peer-deps",
       "name": "Installing Dependencies"
+    },
+    {
+      "command": "nvm install 22",
+      "name": "Version"
     }
   ],
 
