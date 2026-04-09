@@ -6,7 +6,7 @@
       "name": "Installing Dependencies"
     },
     {
-      "command": "npm audit fix",
+      "command": "npm audit fix --force",
       "name": "Running Angular CLI"
     }
   ],
