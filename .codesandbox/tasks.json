@@ -5,10 +5,6 @@
       "command": "npm install --legacy-peer-deps",
       "name": "Installing Dependencies"
     },
-    {
-      "command": "nvm install 22",
-      "name": "Running Angular CLI"
-    }
   ],
 
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
