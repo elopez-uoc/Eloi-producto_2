@@ -6,7 +6,7 @@
       "name": "Installing Dependencies"
     },
     {
-      "command": "npm audit fix --force",
+      "command": "nvm install 22",
       "name": "Running Angular CLI"
     }
   ],
